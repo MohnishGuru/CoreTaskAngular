@@ -1,0 +1,105 @@
+<div class="login-container">
+  <mat-card class="login-card">
+    <div class="logo">TF</div>
+
+    <h1 class="title">
+      @if (forgotMode) {
+        Reset Password
+      } @else {
+        TaskFlow Pro
+      }
+    </h1>
+
+    <p class="subtitle">
+      @if (forgotMode) {
+        Enter your email address to get a password reset link
+      } @else {
+        Sign in to access your workspace
+      }
+    </p>
+
+    <form #loginForm="ngForm">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email Address</mat-label>
+        <mat-icon matPrefix>mail</mat-icon>
+        <input
+          matInput
+          type="email"
+          name="email"
+          required
+          email
+          #email="ngModel"
+          [(ngModel)]="loginObj.email">
+        @if (email.invalid && email.touched) {
+          <mat-error>
+            Valid email format is required.
+          </mat-error>
+        }
+      </mat-form-field>
+
+      @if (!forgotMode) {
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
+          <mat-icon matPrefix>lock</mat-icon>
+          <input
+            matInput
+            [type]="hidePassword ? 'password' : 'text'"
+            name="password"
+            [required]="!forgotMode"
+            minlength="6"
+            #password="ngModel"
+            [(ngModel)]="loginObj.password">
+          <button
+            mat-icon-button
+            matSuffix
+            type="button"
+            (click)="hidePassword = !hidePassword">
+            <mat-icon>
+              {{hidePassword ? 'visibility_off' : 'visibility'}}
+            </mat-icon>
+          </button>
+          @if (password.invalid && password.touched) {
+            <mat-error>
+              Password must be at least 6 characters.
+            </mat-error>
+          }
+        </mat-form-field>
+
+        <div class="forgot-password">
+          <a href="javascript:void(0)" (click)="toggleForgotMode(true)">Forgot password?</a>
+        </div>
+      } @else {
+        <div class="forgot-password">
+          <a href="javascript:void(0)" (click)="toggleForgotMode(false)">Back to Sign In</a>
+        </div>
+      }
+
+      @if (!forgotMode) {
+        <button
+          mat-raised-button
+          color="primary"
+          class="login-btn"
+          [disabled]="loginForm.invalid"
+          (click)="login()">
+          Sign In
+        </button>
+      } @else {
+        <button
+          mat-raised-button
+          color="primary"
+          class="login-btn"
+          [disabled]="email.invalid || !loginObj.email"
+          (click)="forgotPassword()">
+          Send Reset Link
+        </button>
+      }
+    </form>
+
+    @if (!forgotMode) {
+      <p class="bottom-text">
+        Don't have an account?
+        <span>Contact Administrator</span>
+      </p>
+    }
+  </mat-card>
+</div>

@@ -1,0 +1,131 @@
+<div class="dashboard-container" *ngIf="dashboardData">
+
+    <div class="dashboard-header">
+        <div>
+            <h1>{{ greetingText }}, {{ userName }}</h1>
+            <p>Track your key metrics and project health.</p>
+        </div>
+        <div class="header-btn">
+            <button class="week-btn">📅 This Week ⌄</button>
+            <button class="report-btn">+ New Report</button>
+        </div>
+    </div>
+
+    <div class="top-cards">
+        <div class="card">
+            <div class="card-top">
+                <div class="icon-box gray">📋</div>
+                <span class="percent green">↗ 12%</span>
+            </div>
+            <h4>Total Tasks</h4>
+            <h1>{{dashboardData.totalTasks}}</h1>
+        </div>
+
+        <div class="card">
+            <div class="card-top">
+                <div class="icon-box light-green">✔</div>
+                <span class="percent green">↗ 8%</span>
+            </div>
+            <h4>Completed</h4>
+            <h1 class="green-text">{{dashboardData.completedTasks}}</h1>
+        </div>
+
+        <div class="card">
+            <div class="card-top">
+                <div class="icon-box light-orange">⏰</div>
+                <span class="percent orange">↘ 3%</span>
+            </div>
+            <h4>Pending</h4>
+            <h1 class="orange-text">{{dashboardData.pendingTasks}}</h1>
+        </div>
+
+        <div class="card">
+            <div class="card-top">
+                <div class="icon-box light-purple">⏱</div>
+                <span class="percent green">↗ 24%</span>
+            </div>
+            <h4>Hours Logged</h4>
+            <h1 class="purple-text">{{dashboardData.hoursLogged}}h</h1>
+        </div>
+    </div>
+
+    <div class="charts-grid">
+        
+        <div class="chart-card">
+            <div class="chart-header">
+                <div>
+                    <h3>Tasks by Status</h3>
+                    <p>Current sprint progress overview</p>
+                </div>
+                <span class="dots">...</span>
+            </div>
+            
+            <div class="bar-chart-container">
+                <div class="bar-col">
+                    <div class="bar todo-bar" [style.height]="getBarHeight(todoCount)"></div>
+                    <span class="bar-label">To Do</span>
+                </div>
+                <div class="bar-col">
+                    <div class="bar progress-bar" [style.height]="getBarHeight(inProgressCount)"></div>
+                    <span class="bar-label">In Progress</span>
+                </div>
+                <div class="bar-col">
+                    <div class="bar review-bar" [style.height]="getBarHeight(reviewCount)"></div>
+                    <span class="bar-label">Review</span>
+                </div>
+                <div class="bar-col">
+                    <div class="bar done-bar" [style.height]="getBarHeight(doneCount)"></div>
+                    <span class="bar-label">Done</span>
+                </div>
+                    <div class="bar-col">
+                    <div class="bar done-bar" [style.height]="getBarHeight( invalid)"></div>
+                    <span class="bar-label">In Valid</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="chart-card">
+            <div class="chart-header">
+                <div>
+                    <h3>Priority Breakdown</h3>
+                    <p>Distribution of task urgency</p>
+                </div>
+                <span class="dots">...</span>
+            </div>
+
+            <div class="priority-content">
+                <div class="css-ring-chart">
+                    <div class="ring-inner">
+                        <h2>{{dashboardData.totalTasks}}</h2>
+                        <p>Total</p>
+                    </div>
+                </div>
+
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="color-box red-box"></div>
+                        <div class="legend-text">
+                            <strong>High Priority</strong>
+                            <span>{{getPriorityPercent(highPriority)}}% ({{highPriority}} tasks)</span>
+                        </div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-box yellow-box"></div>
+                        <div class="legend-text">
+                            <strong>Medium Priority</strong>
+                            <span>{{getPriorityPercent(mediumPriority)}}% ({{mediumPriority}} tasks)</span>
+                        </div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-box blue-box"></div>
+                        <div class="legend-text">
+                            <strong>Low Priority</strong>
+                            <span>{{getPriorityPercent(lowPriority)}}% ({{lowPriority}} tasks)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

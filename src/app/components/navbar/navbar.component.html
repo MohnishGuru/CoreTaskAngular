@@ -1,0 +1,24 @@
+<mat-toolbar class="navbar">
+
+    <mat-form-field appearance="outline" class="search-box">
+        <input matInput placeholder="Search...">
+    </mat-form-field>
+
+    <div class="right-section" style="display: flex; align-items: center; gap: 15px;">
+
+        <mat-icon class="notification">
+            notifications
+        </mat-icon>
+
+        <div class="profile" style="display: flex; align-items: center; gap: 10px;">
+            <img [src]="profilePic" (error)="handleImageError()" alt="profile" style="border-radius: 50%; height: 40px; width: 40px; object-fit: cover;">
+            <span>{{ userName }}</span>
+        </div>
+
+        <button mat-icon-button color="warn" (click)="logout()" title="Logout">
+            <mat-icon>logout</mat-icon>
+        </button>
+
+    </div>
+
+</mat-toolbar>

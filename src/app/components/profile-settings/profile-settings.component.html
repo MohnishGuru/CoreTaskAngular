@@ -1,0 +1,83 @@
+<div class="settings-wrapper">
+  
+  <div class="settings-header">
+    <h1>Profile Settings</h1>
+    <p>Manage your account details and security preferences.</p>
+  </div>
+
+  <div class="settings-grid">
+    
+    <div class="photo-section-card">
+      <div class="avatar-container">
+        <img [src]="profilePic" alt="Profile Preview" class="profile-preview-img">
+      </div>
+      
+      <input type="file" #fileInput style="display: none;" accept="image/*" (change)="onFileSelected($event)">
+      <button mat-stroked-button type="button" class="upload-btn" (click)="fileInput.click()">
+        Upload Photo
+      </button>
+      
+      <p class="upload-hint">JPG, GIF or PNG. Max size of 800K</p>
+    </div>
+
+    <div class="form-section-card">
+      <form #profileForm="ngForm" (ngSubmit)="updateProfile()">
+        
+        <h3 class="section-title">Personal Information</h3>
+        
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Full Name</mat-label>
+            <input matInput type="text" name="fullName" required [(ngModel)]="profileObj.fullName">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Email Address</mat-label>
+            <input matInput type="email" name="email" required email [(ngModel)]="profileObj.email">
+          </mat-form-field>
+        </div>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="form-field full-width-row">
+            <mat-label>Role</mat-label>
+            <input matInput type="text" name="role" [disabled]="true" [(ngModel)]="profileObj.role">
+          </mat-form-field>
+        </div>
+
+        <hr class="form-divider">
+
+        <h3 class="section-title">Change Password</h3>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="form-field full-width-row">
+            <mat-label>Current Password</mat-label>
+            <input matInput type="password" name="currentPassword" [(ngModel)]="profileObj.currentPassword">
+          </mat-form-field>
+        </div>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>New Password</mat-label>
+            <input matInput type="password" name="newPassword" minlength="6" #newPass="ngModel" [(ngModel)]="profileObj.newPassword">
+            @if (newPass.invalid && newPass.touched) {
+              <mat-error>Password must be at least 6 characters.</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput type="password" name="confirmPassword" [(ngModel)]="profileObj.confirmPassword">
+          </mat-form-field>
+        </div>
+
+        <div class="action-row">
+          <button mat-raised-button color="primary" type="submit" class="save-btn" [disabled]="profileForm.invalid">
+            Update Profile
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+</div>

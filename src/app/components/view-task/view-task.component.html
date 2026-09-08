@@ -1,0 +1,105 @@
+<div class="view-wrapper">
+    
+    <div class="top-bar">
+        <div class="breadcrumb">
+            Engineering &gt; Backend Architecture &gt; TASK-{{ data.taskId || '001' }}
+        </div>
+        <button mat-icon-button class="close-btn" (click)="closeDialog()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <div class="header-actions">
+        <h1>Task Details</h1>
+        <div class="action-buttons">
+            <button class="btn-edit" (click)="openEdit()"><mat-icon>edit</mat-icon> Edit</button>
+            <button class="btn-complete"><mat-icon>check_circle</mat-icon> Complete Task</button>
+        </div>
+    </div>
+
+    <div class="content-grid">
+        
+        <div class="main-column">
+            <div class="card content-card">
+                <h2>{{ data.taskName }}</h2>
+                <p class="description">
+                    {{ data.description || 'No detailed description provided for this task.' }}
+                </p>
+
+                <div class="bottom-meta">
+                    <div class="meta-box">
+                        <mat-icon class="blue-icon">calendar_today</mat-icon>
+                        <div class="meta-text">
+                            <span class="label">DUE DATE</span>
+                            <span class="value">{{ data.dueDate | date:'mediumDate' || 'N/A' }}</span>
+                        </div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="meta-box">
+                        <img [src]="getProfilePic(data.assignedToName)" alt="user" class="avatar">
+                        <div class="meta-text">
+                            <span class="label">ASSIGNED TO</span>
+                            <span class="value">{{ data.assignedToName || 'Unassigned' }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            
+            <div class="card details-card">
+                <h3>Details</h3>
+                
+                <div class="detail-row">
+                    <span class="label">STATUS</span>
+                    <span class="badge status-badge" [ngClass]="getStatusText(data.status).replace(' ', '')">
+                        <span class="dot"></span> {{ getStatusText(data.status) }}
+                    </span>
+                </div>
+
+                <div class="detail-row">
+                    <span class="label">PRIORITY</span>
+                    <span class="badge priority-badge" [ngClass]="getPriorityText(data.priority)">
+                        ! {{ getPriorityText(data.priority) }}
+                    </span>
+                </div>
+
+                <div class="detail-row">
+                    <span class="label">PROJECT</span>
+                    <span class="project-tag"><mat-icon>folder</mat-icon> Backend V2</span>
+                </div>
+            </div>
+
+            <div class="card activity-card">
+                <h3>Activity Log</h3>
+                <div class="timeline">
+                    <div class="time-item">
+                        <div class="circle red-circle"></div>
+                        <div class="time-content">
+                            <p>Priority updated to <strong>High</strong></p>
+                            <span>Oct 22, 09:15 AM</span>
+                        </div>
+                    </div>
+                    <div class="time-item">
+                        <div class="circle blue-circle"></div>
+                        <div class="time-content">
+                            <p>Status changed to <strong class="text-blue">In Progress</strong></p>
+                            <span>Oct 21, 14:30 PM • by Ajay N.</span>
+                        </div>
+                    </div>
+                    <div class="time-item">
+                        <div class="circle gray-circle"></div>
+                        <div class="time-content">
+                            <p>Created task</p>
+                            <span>Oct 20, 10:00 AM • by Ajay N.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

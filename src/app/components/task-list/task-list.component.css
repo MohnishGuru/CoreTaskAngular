@@ -1,0 +1,157 @@
+.container {
+  padding: 30px;
+  background: #f5f7fb;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+td {
+  padding: 18px 0;
+}
+
+.search-container {
+  margin: 20px 0;
+}
+
+.search-container input {
+  width: 300px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+/* Base style for both Priority and Status badges */
+.priority,
+.status {
+  padding: 6px 14px;
+  border-radius: 20px;
+  color: white;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: center;
+  display: inline-block;
+  min-width: 80px; /* Yeh line add ki hai taaki saari badges ek size ki dikhein */
+}
+
+/* Priority Colors */
+.high {
+  background-color: #e53935;
+}
+
+.medium {
+  background-color: #fb8c00;
+}
+
+.low {
+  background-color: #1e88e5;
+}
+
+/* New Status Colors */
+.todo-badge {
+  background-color: #757575; /* Gray for To Do */
+}
+
+.progress-badge {
+  background-color: #0ea5e9; /* Light Blue for In Progress */
+}
+
+.completed-badge {
+  background-color: #43a047; /* Green for Completed */
+}
+.completed-badge, .done-badge {
+  background-color: #4CAF50 !important; /* Green Color */
+  color: white !important;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+.review-badge {
+  background-color: #9c27b0 !important; /* Purple Color */
+  color: white !important;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+.custom-tabs-row {
+  display: flex;
+  gap: 24px;
+  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 16px;
+  padding-left: 4px;
+}
+
+.tab-item {
+  font-size: 14px;
+  font-weight: 500;
+  color: #64748b;
+  padding: 10px 4px;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.tab-item:hover {
+  color: #1e40af;
+}
+
+.tab-item.active {
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.tab-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #2563eb;
+  border-radius: 2px;
+}
+
+.table-card {
+  box-shadow: none !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  overflow: hidden;
+}
+
+.hover-row {
+  transition: background-color 0.15s ease;
+  cursor: pointer;
+}
+
+.hover-row:hover {
+  background-color: #f8fafc !important;
+}
+
+.task-title-text {
+  font-weight: 500;
+  color: #1e293b;
+}
+
+mat-cell, mat-header-cell {
+  border-bottom-color: #f1f5f9 !important;
+}

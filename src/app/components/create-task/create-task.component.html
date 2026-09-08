@@ -1,0 +1,65 @@
+<div class="task-form">
+    
+    <h1>{{ isEditMode ? 'Edit Task' : 'Create New Task' }}</h1>
+    <p class="subtitle">
+        {{ isEditMode ? 'Update the details of your selected task.' : 'Fill in the details below to assign a new task within the workspace.' }}
+    </p>
+
+    <form [formGroup]="taskForm">
+        
+        <div class="form-group">
+            <label>Task Title</label>
+            <input type="text" class="custom-input" placeholder="e.g., Q3 Infrastructure Audit" formControlName="taskName">
+        </div>
+
+        <div class="form-group">
+            <label>Description</label>
+            <textarea class="custom-input" rows="4" placeholder="Provide detailed context, acceptance criteria, and expected outcomes..." formControlName="description"></textarea>
+        </div>
+
+        <div class="row">
+            <div class="form-group half-width">
+                <label>Priority</label>
+                <select class="custom-input" formControlName="priority">
+                    <option value="1">High</option>
+                    <option value="2">Medium</option>
+                    <option value="3">Low</option>
+                </select>
+            </div>
+
+            <div class="form-group half-width">
+                <label>Status</label>
+            <select formControlName="status" class="custom-input">
+  <option value="0">To Do</option>
+  <option value="1">In Progress</option>
+  <option value="2">Review</option>
+  <option value="3">Done</option> </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group half-width">
+                <label>Assign User</label>
+             <select class="custom-input" formControlName="assigneeId">
+    <option value="">Select User...</option>
+    <option value="AAD1D453-9D76-4D75-BBA3-2522C871C0A7">Mohanish</option>
+    
+    <option value="6BA7B810-9DAD-11D1-80B4-00C04FD430C8">Ajay N.</option> 
+</select>
+            </div>
+
+            <div class="form-group half-width">
+                <label>Due Date</label>
+                <input type="date" class="custom-input" formControlName="dueDate">
+            </div>
+        </div>
+
+        <div class="button-section">
+            <button type="button" class="btn-cancel" (click)="closeDialog()">Cancel</button>
+            <button type="button" class="btn-save" (click)="saveTask()" [disabled]="taskForm.invalid">
+                <span class="save-icon">💾</span> {{ isEditMode ? 'Update Task' : 'Save Task' }}
+            </button>
+        </div>
+
+    </form>
+</div>

@@ -1,0 +1,46 @@
+.navbar {
+
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+}
+
+.search-box {
+
+    width: 350px;
+
+}
+
+.right-section {
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+}
+
+.profile {
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+}
+
+.profile img {
+
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+
+}
+
+.notification {
+
+    cursor: pointer;
+
+}
